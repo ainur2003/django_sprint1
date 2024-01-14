@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <title>{% block title %}Лента записей{% endblock %}</title>
+  </head>
+  <body>
+    <main>
+      {%block content%}
+      <div class="container py-5">
+        <h1>Лента записей</h1>
+        <hr>
+        {% for blog_post in post reversed %}
+        <article>
+          <ul>
+            <li>
+              {{ blog_post.location }}
+            </li>
+            <li>
+              {{ blog_post.date }}
+            </li>
+            <li>
+              Категория: <a href="{% url 'blog:category_posts' blog_post.category %}">{{ blog_post.category }}</a>
+            </li>
+          </ul>
+          <p>
+            {{ blog_post.text|linebreaksbr|truncatewords:10 }}
+          </p>
+          <a href="{% url 'blog:post_detail' blog_post.id %}">Читать полный текст</a>
+        </article>
+      {% if not forloop.last %}
+        <hr>
+      {% endif %}
+      {% endfor %}
+      </div>
+      {% endblock %}
+    </main>
+  </body>
+</html>
