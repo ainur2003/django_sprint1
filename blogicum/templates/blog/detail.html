@@ -1,6 +1,4 @@
 {% extends "base.html" %}
-<!DOCTYPE html>
-<html lang="ru">
   <head>
     <title>
       {% block title %}
@@ -11,7 +9,6 @@
   <body>
     <main>
       {% block content %}
-      <div class="container py-5">
         <article>
           <ul>
             <li>
@@ -29,7 +26,6 @@
             {{ post.text|linebreaksbr }}
           </p>
         </article>
-      </div>
       {% endblock %}
     </main>
   </body>

@@ -1,6 +1,7 @@
 from django.shortcuts import render
+from django.http import Http404
 
-posts = [
+posts: list = [
     {
         'id': 0,
         'location': 'Остров отчаянья',
@@ -50,9 +51,12 @@ def index(request):
     return render(request, template, context)
 
 
-def post_detail(request, pk):
+def post_detail(request, post_id):
     template = 'blog/detail.html'
-    context = {'post': posts[pk]}
+    try:
+        context = {'post': posts[post_id]}
+    except IndexError:
+        raise Http404('Такого поста не существует')
     return render(request, template, context)
 
 
