@@ -6,6 +6,8 @@ __pycache__/
 # C extensions
 *.so
 
+blogicum/static_dev
+
 # Distribution / packaging
 .Python
 build/
