@@ -47,15 +47,15 @@ posts: list[dict] = [
 
 def index(request):
     template = 'blog/index.html'
-    myDict = {post['id']: post for post in posts}
-    context = {'post': myDict.values}
+    context = {'post': posts}
     return render(request, template, context)
 
 
 def post_detail(request, post_id):
     template = 'blog/detail.html'
+    snake_case = {post['id']: post for post in posts}
     try:
-        context = {'post': posts[post_id]}
+        context = {'post': snake_case[post_id]}
     except KeyError as exc:
         raise Http404('Такого поста не существует') from exc
     return render(request, template, context)
