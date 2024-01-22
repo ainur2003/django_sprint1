@@ -44,6 +44,8 @@ posts: list[dict] = [
     },
 ]
 
+snake_case = {post['id']: post for post in posts}
+
 
 def index(request):
     template = 'blog/index.html'
@@ -53,7 +55,6 @@ def index(request):
 
 def post_detail(request, post_id):
     template = 'blog/detail.html'
-    snake_case = {post['id']: post for post in posts}
     try:
         context = {'post': snake_case[post_id]}
     except KeyError as exc:
