@@ -44,7 +44,7 @@ posts: list[dict] = [
     },
 ]
 
-snake_case = {post['id']: post for post in posts}
+posts_case: dict = {post['id']: post for post in posts}
 
 
 def index(request):
@@ -56,7 +56,7 @@ def index(request):
 def post_detail(request, post_id):
     template = 'blog/detail.html'
     try:
-        context = {'post': snake_case[post_id]}
+        context = {'post': posts_case[post_id]}
     except KeyError as exc:
         raise Http404('Такого поста не существует') from exc
     return render(request, template, context)
